@@ -34,7 +34,7 @@ new CronJob(
   '20 16 * * *', //test at 4:20PM
   // '*/1 * * * *', //test every minute
   function () {
-    postTweet(scrapeMenu());
+    postTweet();
   },
   null,
   true,
