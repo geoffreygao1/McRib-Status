@@ -1,0 +1,29 @@
+{
+  "name": "mcrib-status",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "develop": "NODE_ENV=develop node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geoffreygao1/McRib-Status.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geoffreygao1/McRib-Status/issues"
+  },
+  "homepage": "https://github.com/geoffreygao1/McRib-Status#readme",
+  "dependencies": {
+    "cors-anywhere": "^0.4.4",
+    "cron": "^2.2.0",
+    "dotenv": "^16.0.3",
+    "node": "^19.4.0",
+    "node-fetch": "^3.3.0",
+    "twit": "^2.2.11"
+  }
+}
