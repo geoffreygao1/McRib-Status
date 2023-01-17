@@ -4,6 +4,8 @@
 
 #### _A Twitter bot that will tweet every day if the McRib is back_
 
+![McRib](https://upload.wikimedia.org/wikipedia/commons/2/27/McD-McRib.jpg)
+
 ## Technologies Used
 
 * _Javascript_
