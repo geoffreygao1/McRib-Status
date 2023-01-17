@@ -1,4 +1,4 @@
-# _McRib_
+# _McRib Status Bot_
 
 #### By _Geoffrey Gao_
 
