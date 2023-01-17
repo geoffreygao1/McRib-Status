@@ -13,26 +13,24 @@ const client = new Twit({
 
 async function postTweet() {
   let message = await scrapeMenu();
-  // return new Promise((resolve, reject) => {
-  //   client.post("statuses/update", {
-  //     status: message
-  //   }, (error, data, response) => {
-  //     if (error) {
-  //       console.log(error);
-  //       reject(error);
-  //     } else {
-  //       console.log(data);
-  //       resolve(data);
-  //     }
-  //   });
-  // });
-  console.log(message);
+  return new Promise((resolve, reject) => {
+    client.post("statuses/update", {
+      status: message
+    }, (error, data, response) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log(data);
+        resolve(data);
+      }
+    });
+  });
 };
 
 // Cron Scheduler 
 new CronJob(
-  '20 16 * * *', //test at 4:20PM
-  // '*/1 * * * *', //test every minute
+  '20 16 * * *', //Executes at 4:20PM PST
   function () {
     postTweet();
   },
@@ -51,7 +49,6 @@ async function scrapeMenu() {
 //UI Logic
 function printResult(webScrape) {
   const mcRibCode = 'data-product-id="200446"';
-  // const mcRibCode = 'data-product-id="200449"'; //passing
   if (webScrape.includes(mcRibCode)) {
     return ('The McRib is Back!');
   } else {
