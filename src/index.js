@@ -29,19 +29,17 @@ async function postTweet() {
   }
 };
 
-// Cron Scheduler 
-// new CronJob(
-//   '20 16 * * *', //Executes at 4:20PM PST
-//   // '07 17 * * *', //Executes at 4:20PM PST
-//   function () {
-//     postTweet();
-//   },
-//   null,
-//   true,
-//   'America/Los_Angeles'
-// );
-
-postTweet();
+// Cron Scheduler
+new CronJob(
+  '20 16 * * *', //Executes at 4:20PM PST
+  // '07 17 * * *', //Executes at 4:20PM PST
+  function () {
+    postTweet();
+  },
+  null,
+  true,
+  'America/Los_Angeles'
+);
 
 //Fetch
 async function scrapeMenu() {
