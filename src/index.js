@@ -3,41 +3,45 @@ const CronJob = require('cron').CronJob;
 require('dotenv').config();
 
 //Twitter Bot
-const Twit = require('twit');
-const client = new Twit({
-  consumer_key: process.env.TWITTER_API_KEY,
-  consumer_secret: process.env.TWITTER_API_SECRET,
-  access_token: process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+// const Twit = require('twit');
+const { TwitterApi } = require('twitter-api-v2');
+// const client = new Twit({
+const client = new TwitterApi({
+  appKey: process.env.API_KEY,
+  appSecret: process.env.API_SECRET,
+  accessToken: process.env.ACCESS_TOKEN,
+  accessSecret: process.env.ACCESS_SECRET,
 });
+const bearer = new TwitterApi(process.env.BEARER_TOKEN);
+
+const twitterClient = client.readWrite;
+const twitterBearer = bearer.readOnly;
+
+module.exports = { twitterClient, twitterBearer };
+
 
 async function postTweet() {
   let message = await scrapeMenu();
-  return new Promise((resolve, reject) => {
-    client.post("statuses/update", {
-      status: message
-    }, (error, data, response) => {
-      if (error) {
-        console.log(error);
-        reject(error);
-      } else {
-        console.log(data);
-        resolve(data);
-      }
-    });
-  });
+  try {
+    await twitterClient.v2.tweet(message);
+  } catch (e) {
+    console.log(e)
+  }
 };
 
 // Cron Scheduler 
-new CronJob(
-  '20 16 * * *', //Executes at 4:20PM PST
-  function () {
-    postTweet();
-  },
-  null,
-  true,
-  'America/Los_Angeles'
-);
+// new CronJob(
+//   '20 16 * * *', //Executes at 4:20PM PST
+//   // '07 17 * * *', //Executes at 4:20PM PST
+//   function () {
+//     postTweet();
+//   },
+//   null,
+//   true,
+//   'America/Los_Angeles'
+// );
+
+postTweet();
 
 //Fetch
 async function scrapeMenu() {
@@ -50,8 +54,11 @@ async function scrapeMenu() {
 function printResult(webScrape) {
   const mcRibCode = 'data-product-id="200446"';
   if (webScrape.includes(mcRibCode)) {
-    return ('The McRib is Back!');
+    return ('The McRib is Back!!!');
   } else {
-    return ('The McRib is not back');
+    let notBackArray = ['The McRib is not back', 'Unfortunately the McRib is not back', 'The McRib is still not back', 'Nope, the McRib is not back', 'Bad News, the McRib is still not back'];
+    let item = notBackArray[Math.floor(Math.random() * notBackArray.length)];
+    let date = new Date().toLocaleDateString();
+    return (item + ' (' + date + ')');
   }
 }
