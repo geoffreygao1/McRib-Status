@@ -58,7 +58,9 @@ function printResult(webScrape) {
   } else {
     let notBackArray = ['The McRib is not back', 'Unfortunately the McRib is not back', 'The McRib is still not back', 'Nope, the McRib is not back', 'Bad News, the McRib is still not back'];
     let item = notBackArray[Math.floor(Math.random() * notBackArray.length)];
-    let date = new Date().toLocaleDateString();
+    let date = new Date().toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles"
+    });
     return (item + ' (' + date + ')');
   }
 }
