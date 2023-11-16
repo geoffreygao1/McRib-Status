@@ -32,6 +32,7 @@ _This project is a twitter bot that will tweet every day at 4:20PM PST whether o
    - _Start the server with `npm start`_
 
 * _To create an automated version of this twitter bot, the application must be launched on a server. The one I used was [Alwaysdata](https://alwaysdata.com). Setup instructions can be found using [this guide](https://blog.shahednasser.com/simple-twitter-bot-tutorial-with-node-part-2/)_
+
 ## Known Bugs
 
 * _N/A_
