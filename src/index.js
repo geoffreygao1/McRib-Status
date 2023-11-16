@@ -98,6 +98,7 @@ async function scrapeMenu() {
   // const res = await fetch(`https://www.mcdonalds.com/us/en-us/full-menu.html`);
   // const body = await res.text();
   const menus = await Promise.all(storeList.map(fetchWebsiteText));
+  console.log(menus);
   return printResult(menus);
 };
 
@@ -115,7 +116,7 @@ async function fetchWebsiteText(url) {
 //UI Logic
 function printResult(webScrape) {
   // const mcRibCode = 'data-product-id="200446"';
-  const mcRibWord = 'McRib'
+  const mcRibWord = 'McRib';
   if (webScrape.some((element) => element.includes(mcRibWord))) {
     return ('The McRib is Back!!!');
   } else {
